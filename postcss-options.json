@@ -1,5 +1,5 @@
 {
-  "use": ["autoprefixer"],
+  "use": ["postcss-inline-image", "autoprefixer"],
   "autoprefixer": {
     "browsers": "> 5%"
   }
