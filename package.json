@@ -23,10 +23,12 @@
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-react": "6.5.0",
+    "classnames": "2.2.5",
     "jquery": "2.2.4",
     "moment": "2.13.0",
     "node-sass": "3.7.0",
     "postcss-cli": "2.5.2",
+    "postcss-inline-image": "0.1.1",
     "react": "15.1.0",
     "react-dom": "15.1.0",
     "webpack": "1.13.1"
