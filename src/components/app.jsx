@@ -5,7 +5,7 @@
 
 import React from 'react'
 import SearchForm from './searchForm'
-import UserInfo from './userInfo'
+import UserShow from './userShow'
 
 var dispatcher = {}
 var userData
@@ -15,7 +15,7 @@ class App extends React.Component {
     return (
 	    <main>
 	    	<SearchForm triggerSearch={dispatcher.triggerSearch} />
-	    	{userData && <UserInfo data={userData} />}
+	    	{userData && <UserShow data={userData} />}
 	    </main>
     )
   }

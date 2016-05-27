@@ -1,5 +1,5 @@
 /**
- * @module components/userInfo
+ * @module components/userShow
  * @description Presents basic user information as avatar, twitter id name and bio
  */
 
@@ -7,7 +7,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 
-class UserInfo extends React.Component {
+class UserShow extends React.Component {
 	render () {
 		var data = this.props.data
 		return (
@@ -20,4 +20,4 @@ class UserInfo extends React.Component {
 	}
 }
 
-export default UserInfo
+export default UserShow
