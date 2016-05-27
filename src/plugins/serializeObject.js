@@ -1,16 +1,17 @@
 /**
  * @module plugins/serializeObject
- * @description Serialize object Jquery form extention
+ * @description Serialize object Jquery form extention,
+ * have nothing to export just attaching itself to jquery
  */
 
-import _ from 'lodash'
+import {each} from 'lodash'
 import $ from 'jquery'
 
 $.fn.serializeObject = function () {
   var sdata = $(this).serializeArray()
   var data = {}
 
-  _.each(sdata, function (el) {
+  each(sdata, function (el) {
     data[el.name] = el.value
   })
 
