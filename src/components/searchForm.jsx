@@ -3,28 +3,39 @@
  * @description Search form with bird, magnifier and things
  */
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, {Component} from 'react'
+import {findDOMNode} from 'react-dom'
 import classNames from 'classnames'
+import $ from 'jquery'
+import '../plugins/serializeObject'
 
-class SearchForm extends React.Component {
+class SearchForm extends Component {
 	searchButton () {
-		var screenName = ReactDOM.findDOMNode(this.refs.screenName)
-		if (this.state.isExpanded)
+		var screenName = findDOMNode(this.refs.screenName)
+		if (this.state.isExpanded) {
 			screenName.blur()
-		else
+			this.props.resetData()
+		} else {
 			screenName.focus()
+		}
 
 		this.setState({
 			isExpanded: !this.state.isExpanded,
 			isLoading: false
 		})
 	}
-	submitForm (e) {
-		e.preventDefault()
+	submitForm (ev) {
+		ev.preventDefault()
+		var query = $(ev.target).serializeObject()
 		this.setState({
 			isLoading: true
 		})
+		this.props.fetchData(query)
+		.then(() => this.setState(
+			{
+				isLoading: false
+			}
+		))
 	}
 	componentWillMount () {		
 		this.setState({

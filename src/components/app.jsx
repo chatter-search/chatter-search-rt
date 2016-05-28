@@ -3,19 +3,42 @@
  * @description Assembles application
  */
 
-import React from 'react'
+import React, {Component} from 'react'
 import SearchForm from './searchForm'
+import DataFlow from '../dataFlow'
 import UserShow from './userShow'
+import UserTimeline from './userTimeline'
 
-var dispatcher = {}
-var userData
+var dataFlow = new DataFlow()
 
-class App extends React.Component {
+class App extends Component {
+  componentWillMount () {
+  	this.setState({})
+  }
+
+  fetchData (query) {
+  	return dataFlow.fetchData(query)
+		.then((data) => {
+			this.setState({
+				userData: data[0],
+				userTimelineData: data[1]
+			})
+		})
+  }
+  resetData () {
+  	this.setState({
+  		userData: null,
+  		userTimelineData: null
+  	})
+  }
   render () {
     return (
 	    <main>
-	    	<SearchForm triggerSearch={dispatcher.triggerSearch} />
-	    	{userData && <UserShow data={userData} />}
+	    	<SearchForm
+	    		fetchData={this.fetchData.bind(this)}
+	    		resetData={this.resetData.bind(this)} />
+	    	<UserShow data={this.state.userData} />
+	    	<UserTimeline data={this.state.userTimelineData} />
 	    </main>
     )
   }
