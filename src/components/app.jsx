@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   fetchData (query) {
-  	return api.fetchData(query)
+  	return api.fetchAll(query)
 		.then((data) => {
 			this.setState({
 				userData: data[0],

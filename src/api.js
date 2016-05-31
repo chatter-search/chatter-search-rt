@@ -6,7 +6,7 @@
 import $ from 'jquery'
 
 class DataFlow {
-	fetchData (data) {
+	fetchAll (data) {
 		var userShowDfd = $.get(
 			'https://chatter-search-api.herokuapp.com/1.2.0/user_show',
 			data
