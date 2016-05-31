@@ -1,6 +1,6 @@
 /**
- * @module dataFlow
- * @description Updates store with data
+ * @module api
+ * @description Calls api endpoints
  */
 
 import $ from 'jquery'

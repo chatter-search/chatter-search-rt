@@ -5,11 +5,11 @@
 
 import React, {Component} from 'react'
 import SearchForm from './searchForm'
-import DataFlow from '../dataFlow'
+import Api from '../api'
 import UserShow from './userShow'
 import UserTimeline from './userTimeline'
 
-var dataFlow = new DataFlow()
+var api = new Api()
 
 class App extends Component {
   componentWillMount () {
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   fetchData (query) {
-  	return dataFlow.fetchData(query)
+  	return api.fetchData(query)
 		.then((data) => {
 			this.setState({
 				userData: data[0],
