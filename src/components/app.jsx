@@ -9,6 +9,25 @@ import Api from '../api'
 import UserShow from './userShow'
 import UserTimeline from './userTimeline'
 
+import { createStore } from 'redux'
+import appRedusers from '../reducers'
+var store = createStore(appRedusers)
+
+// Log the initial state
+
+import {setVisibilityFilter, VisibilityFilters} from '../actions'
+console.log(store.getState())
+
+var unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
+// Dispatch some actions
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_WITH_IMAGES))
+
+// Stop listening to state updates
+unsubscribe()
+
 var api = new Api()
 
 class App extends Component {
