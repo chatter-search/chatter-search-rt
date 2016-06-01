@@ -29,7 +29,7 @@ const RESET_USER_DATA = actions.RESET_USER_DATA
 
 function visibilityFilter (state = SHOW_ALL, action) {
   switch (action.type) {
-    case actions.SET_VISIBILITY_FILTER:
+    case SET_VISIBILITY_FILTER:
       return action.filter
     default:
       return state
