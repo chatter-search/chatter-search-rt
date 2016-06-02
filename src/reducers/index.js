@@ -3,51 +3,83 @@
  * @description Default reducer for redux architeture
  */
 
-import * as actions from '../actions'
 import { combineReducers } from 'redux'
+import { assign } from 'lodash'
 
-const SHOW_ALL = actions.VisibilityFilters.SHOW_ALL
+import * as actions from '../actions'
+
+const SHOW_WITH_IMAGES = actions.VisibilityFilters.SHOW_WITH_IMAGES
+const SHOW_WITH_RETWEETS = actions.VisibilityFilters.SHOW_WITH_RETWEETS
+
 const SET_VISIBILITY_FILTER = actions.SET_VISIBILITY_FILTER
+
 const RESET_USER_DATA = actions.RESET_USER_DATA
+const REQUEST_USER_DATA = actions.REQUEST_USER_DATA
+const RECEIVE_USER_DATA = actions.RESET_USER_DATA
 
 /* Shape for the state data
-	
-	{
-		visibilityFilter: 'SHOW_ALL',
-		userData: {
-			...
-		},
-		userTimeline: [
-			{
-				...
-			},
-			....
-		]
-	}
+  {
+    visibilityFilter: {
+      [SHOW_WITH_IMAGES]: false,
+      [SHOW_WITH_RETWEETS]: 0
+    },
+    userData: {
+      isFetching: false,
+      query: null,
+      data: {
+        ...
+      }
+    },
+    userTweets: [
+      {
+        ...
+      },
+      ...
+    ]
+  }
 
 */
 
-function visibilityFilter (state = SHOW_ALL, action) {
+const DEFAULT_FILTERS = {
+  [SHOW_WITH_IMAGES]: false,
+  [SHOW_WITH_RETWEETS]: 0
+}
+function visibilityFilter (state = DEFAULT_FILTERS, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
-      return action.filter
+      return assign({}, state, action.filter)
     default:
       return state
   }
 }
 
-function resetUserData (state = {}, action) {
+function userData (state = {}, action) {
   switch (action.type) {
     case RESET_USER_DATA:
-      return {}
+      return assign({}, state, {
+        isFetching: true,
+        query: null,
+        data: {}
+      })
+    case REQUEST_USER_DATA:
+      return assign({}, state, {
+        isFetching: true,
+        query: action.query,
+        data: {}
+      })
+    case RECEIVE_USER_DATA:
+      return assign({}, state, {
+        isFetching: false,
+        data: action.data
+      })
     default:
       return state
   }
 }
 
 const chatterApp = combineReducers({
-	visibilityFilter,
-	resetUserData
+  visibilityFilter,
+  userData
 })
 
 export default chatterApp

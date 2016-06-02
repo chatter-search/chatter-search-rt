@@ -7,58 +7,40 @@ import React, {Component} from 'react'
 import SearchForm from './searchForm'
 import Api from '../api'
 import UserShow from './userShow'
-import UserTimeline from './userTimeline'
-
-import { createStore } from 'redux'
-import appRedusers from '../reducers'
-var store = createStore(appRedusers)
-
-// Log the initial state
-
-import {setVisibilityFilter, VisibilityFilters} from '../actions'
-console.log(store.getState())
-
-var unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
-
-// Dispatch some actions
-store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_WITH_IMAGES))
-
-// Stop listening to state updates
-unsubscribe()
+import VisibleTweetsList from '../containers/visibleTweetsList'
 
 var api = new Api()
 
 class App extends Component {
   componentWillMount () {
-  	this.setState({})
+    this.setState({})
   }
 
   fetchData (query) {
-  	return api.fetchAll(query)
-		.then((data) => {
-			this.setState({
-				userData: data[0],
-				userTimelineData: data[1]
-			})
-		})
+    return api.fetchAll(query)
+    .then((data) => {
+      this.setState({
+        userData: data[0],
+        userTimelineData: data[1]
+      })
+    })
   }
   resetData () {
-  	this.setState({
-  		userData: null,
-  		userTimelineData: null
-  	})
+    this.setState({
+      userData: null,
+      userTimelineData: null
+    })
   }
   render () {
+    let userData = this.state.userData
     return (
-	    <main>
-	    	<SearchForm
-	    		fetchData={this.fetchData.bind(this)}
-	    		resetData={this.resetData.bind(this)} />
-	    	<UserShow data={this.state.userData} />
-	    	<UserTimeline data={this.state.userTimelineData} />
-	    </main>
+      <main>
+        <SearchForm
+          fetchData={this.fetchData.bind(this)}
+          resetData={this.resetData.bind(this)} />
+        {userData && <UserShow {...userData} />}
+        <VisibleTweetsList />
+      </main>
     )
   }
 }

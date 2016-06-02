@@ -3,25 +3,26 @@
  * @description Renders user timeline item
  */
 
-
-import React, {Component} from 'react'
+import React, { PropTypes } from 'react'
 import moment from 'moment'
 import ImageItem from './imageItem'
 
-class UserTimeline extends Component {
-	render () {
-		var data = this.props.data
-		return (
-			<section className="user-timeline-item">
-		        <time className="twitted-at clear" datetime="{data.created_at}">
-		        	{moment(data.created_at_timestamp).fromNow()}
-		        </time>
-				{data.photos && data.photos.map((item, ix) => <ImageItem key={ix} data={item} />)}
-				<div className="user-timeline-text">{data.text}</div>
-				<div className="clear"></div>
-			</section>
-		)
-	}
+const UserTimelineContent = ({created_at, created_at_timestamp, photos, text}) => (
+  <section className='user-timeline-item'>
+    <time className='twitted-at clear' datetime='{data.created_at}'>
+      {moment(created_at_timestamp).fromNow()}
+    </time>
+    {photos && photos.map((item, ix) => <ImageItem key={ix} data={item} />)}
+    <div className='user-timeline-text'>{text}</div>
+    <div className='clear'></div>
+  </section>
+)
+
+UserTimelineContent.propTypes = {
+  created_at: PropTypes.string.isRequired,
+  created_at_timestamp: PropTypes.number.isRequired,
+  photos: PropTypes.array,
+  text: PropTypes.string.isRequired
 }
 
-export default UserTimeline
+export default UserTimelineContent
