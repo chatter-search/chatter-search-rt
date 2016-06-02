@@ -4,8 +4,8 @@
  */
 
 import React, {Component} from 'react'
-import SearchForm from './searchForm'
 import Api from '../api'
+import SearchForm from '../containers/searchForm'
 import UserShow from './userShow'
 import VisibleTweetsList from '../containers/visibleTweetsList'
 
@@ -35,11 +35,8 @@ class App extends Component {
     let userData = this.state.userData
     return (
       <main>
-        <SearchForm
-          fetchData={this.fetchData.bind(this)}
-          resetData={this.resetData.bind(this)} />
+        <SearchForm />
         {userData && <UserShow {...userData} />}
-        <VisibleTweetsList />
       </main>
     )
   }

@@ -15,7 +15,7 @@ const SET_VISIBILITY_FILTER = actions.SET_VISIBILITY_FILTER
 
 const RESET_USER_DATA = actions.RESET_USER_DATA
 const REQUEST_USER_DATA = actions.REQUEST_USER_DATA
-const RECEIVE_USER_DATA = actions.RESET_USER_DATA
+const RECEIVE_USER_DATA = actions.RECEIVE_USER_DATA
 
 /* Shape for the state data
   {
@@ -23,6 +23,7 @@ const RECEIVE_USER_DATA = actions.RESET_USER_DATA
       [SHOW_WITH_IMAGES]: false,
       [SHOW_WITH_RETWEETS]: 0
     },
+    isFormExpanded: false,
     userData: {
       isFetching: false,
       query: null,
@@ -77,9 +78,19 @@ function userData (state = {}, action) {
   }
 }
 
+function isFormExpanded (state = false, action) {
+  switch (action.type) {
+    case 'TOGGLE_FORM':
+      return !state
+    default:
+      return state
+  }
+}
+
 const chatterApp = combineReducers({
   visibilityFilter,
-  userData
+  userData,
+  isFormExpanded
 })
 
 export default chatterApp
