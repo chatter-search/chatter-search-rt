@@ -6,7 +6,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const SearchForm = ({onSubmit, onReset, isFetching, isFormExpanded}) => {
+const SearchForm = ({onSubmit, onReset, onClickReset, isFetching, isFormExpanded}) => {
   var formClasses = classNames({
     'search-bar': true,
     'expanded': isFormExpanded
@@ -20,9 +20,9 @@ const SearchForm = ({onSubmit, onReset, isFetching, isFormExpanded}) => {
       <div className='container'>
         <div className={birdClasses}></div>
       </div>
-      <form onSubmit={onSubmit} className={formClasses} autocomplete='off'>
+      <form onReset={onReset} onSubmit={onSubmit} className={formClasses} autocomplete='off'>
         <input type='text' name='screen_name' className='input' autoComplete='off' />
-        <button onClick={onReset} type='reset' className='search'></button>
+        <button onClick={onClickReset} type='reset' className='search'></button>
       </form>
     </div>
   )

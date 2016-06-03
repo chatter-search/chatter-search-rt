@@ -1,5 +1,5 @@
 /**
- * @module containers/searchForm
+ * @module containers/searchFormCont
  * @description Search form with bird, magnifier and things
  */
 
@@ -21,10 +21,19 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit (ev) {
       ev.preventDefault()
-      var query = $(ev.target).serializeObject()
+      let query = $(ev.target).serializeObject()
       dispatch(fetchUserData(query))
     },
     onReset (ev) {
+      let form = $(ev.target)
+      if (form.hasClass('expanded')) {
+        form.find('input').focus()
+      } else {
+        form.find('input').blur()
+      }
+    },
+    onClickReset (ev) {
+      dispatch(resetUserData())
       dispatch(toggleForm())
     }
   }

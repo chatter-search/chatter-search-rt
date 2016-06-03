@@ -4,18 +4,10 @@
  */
 
 import { combineReducers } from 'redux'
-import { assign } from 'lodash'
 
-import * as actions from '../actions'
-
-const SHOW_WITH_IMAGES = actions.VisibilityFilters.SHOW_WITH_IMAGES
-const SHOW_WITH_RETWEETS = actions.VisibilityFilters.SHOW_WITH_RETWEETS
-
-const SET_VISIBILITY_FILTER = actions.SET_VISIBILITY_FILTER
-
-const RESET_USER_DATA = actions.RESET_USER_DATA
-const REQUEST_USER_DATA = actions.REQUEST_USER_DATA
-const RECEIVE_USER_DATA = actions.RECEIVE_USER_DATA
+import visibilityFilter from './visibilityFilter'
+import userData from './userData'
+import isFormExpanded from './isFormExpanded'
 
 /* Shape for the state data
   {
@@ -31,61 +23,19 @@ const RECEIVE_USER_DATA = actions.RECEIVE_USER_DATA
         ...
       }
     },
-    userTweets: [
-      {
+    userTweets: {
+      isFetching: false,
+      query: null,
+      data: [
+        {
+          ...
+        },
         ...
-      },
-      ...
-    ]
+      ]
+    }
   }
 
 */
-
-const DEFAULT_FILTERS = {
-  [SHOW_WITH_IMAGES]: false,
-  [SHOW_WITH_RETWEETS]: 0
-}
-function visibilityFilter (state = DEFAULT_FILTERS, action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return assign({}, state, action.filter)
-    default:
-      return state
-  }
-}
-
-function userData (state = {}, action) {
-  switch (action.type) {
-    case RESET_USER_DATA:
-      return assign({}, state, {
-        isFetching: true,
-        query: null,
-        data: {}
-      })
-    case REQUEST_USER_DATA:
-      return assign({}, state, {
-        isFetching: true,
-        query: action.query,
-        data: {}
-      })
-    case RECEIVE_USER_DATA:
-      return assign({}, state, {
-        isFetching: false,
-        data: action.data
-      })
-    default:
-      return state
-  }
-}
-
-function isFormExpanded (state = false, action) {
-  switch (action.type) {
-    case 'TOGGLE_FORM':
-      return !state
-    default:
-      return state
-  }
-}
 
 const chatterApp = combineReducers({
   visibilityFilter,
