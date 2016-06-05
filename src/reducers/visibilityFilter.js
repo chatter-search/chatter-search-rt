@@ -5,8 +5,8 @@
 import { assign } from 'lodash'
 
 const DEFAULT_FILTERS = {
-  'SHOW_WITH_IMAGES': false,
-  'SHOW_WITH_RETWEETS': 0
+  SHOW_WITH_IMAGES: false,
+  SHOW_WITH_RETWEETS: 0
 }
 function visibilityFilter (state = DEFAULT_FILTERS, action) {
   switch (action.type) {

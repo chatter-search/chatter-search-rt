@@ -13,14 +13,18 @@ import isFormExpanded from './isFormExpanded'
 /* Shape for the state data
   {
     visibilityFilter: {
-      'SHOW_WITH_IMAGES': false,
-      'SHOW_WITH_RETWEETS': 0
+      SHOW_WITH_IMAGES: false,
+      SHOW_WITH_RETWEETS: 0
+    },
+    sortFilter: {
+      SORT_BY: 'DATE',
+      SORT_ORDER: -1
     },
     isFormExpanded: false,
     userData: {
       isFetching: false,
       query: null,
-      data: null
+      data: {}
     },
     userTimeline: {
       isFetching: false,
