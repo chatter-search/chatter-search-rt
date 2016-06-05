@@ -7,7 +7,7 @@ import React, { PropTypes } from 'react'
 
 import { noop } from 'lodash'
 
-const UserTimelineToolbar = ({filterWithImages}) => (
+const UserTimelineToolbar = ({filterWithImages, filterWithRetweets, retweetCount}) => (
   <form className='user-timeline-toolbar'>
     <label>
       Has image:<input
@@ -22,9 +22,9 @@ const UserTimelineToolbar = ({filterWithImages}) => (
         type='number'
         min='0'
         step='1'
-        value='0'
+        value={retweetCount}
         name='filter-retweet-count'
-        onChange={noop}
+        onChange={(ev) => filterWithRetweets(Number(ev.target.value))}
       />
     </label>
     <radiogroup onChange={noop}>
