@@ -21,10 +21,11 @@ const mapStateToProps = (state) => {
   let tweets = state.userTimeline.data
   let hasImage = state.visibilityFilter.SHOW_WITH_IMAGES
   let retweetCount = state.visibilityFilter.SHOW_WITH_RETWEETS
-  tweets = getVisibleTweets(tweets, hasImage, retweetCount)
+  tweets = tweets && getVisibleTweets(tweets, hasImage, retweetCount)
   return {
     tweets,
-    retweetCount
+    retweetCount,
+    hasImage
   }
 }
 

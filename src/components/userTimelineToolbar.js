@@ -7,13 +7,19 @@ import React, { PropTypes } from 'react'
 
 import { noop } from 'lodash'
 
-const UserTimelineToolbar = ({filterWithImages, filterWithRetweets, retweetCount}) => (
+const UserTimelineToolbar = ({
+  filterWithImages,
+  filterWithRetweets,
+  retweetCount,
+  hasImage
+}) => (
   <form className='user-timeline-toolbar'>
     <label>
       Has image:<input
         type='checkbox'
         name='filter-has-image'
         value='true'
+        checked={hasImage ? 'checked' : null}
         onChange={(ev) => filterWithImages(ev.target.checked)}
       />
     </label>
