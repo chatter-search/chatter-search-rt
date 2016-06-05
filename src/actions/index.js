@@ -13,6 +13,18 @@ export function setVisibilityFilter (filter) {
   return { type: 'SET_VISIBILITY_FILTER', filter }
 }
 
+export function resetVisibilityFilter () {
+  return { type: 'RESET_VISIBILITY_FILTER' }
+}
+
+export function setOrderFilter (filter) {
+  return { type: 'SET_ORDER_FILTER', filter }
+}
+
+export function resetOrderFilter () {
+  return { type: 'RESET_ORDER_FILTER' }
+}
+
 /* request user data */
 export function requestUserData (query) {
   return { type: 'REQUEST_USER_DATA', query }

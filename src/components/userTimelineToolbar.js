@@ -11,7 +11,9 @@ const UserTimelineToolbar = ({
   filterWithImages,
   filterWithRetweets,
   retweetCount,
-  hasImage
+  hasImage,
+  filterOrderDir,
+  orderDir
 }) => (
   <form className='user-timeline-toolbar'>
     <label>
@@ -54,7 +56,8 @@ const UserTimelineToolbar = ({
         type='checkbox'
         name='sort-direction'
         value='true'
-        onChange={noop}
+        checked={orderDir === 'desc' ? 'checked' : null}
+        onChange={(ev) => filterOrderDir(ev.target.checked)}
       />
     </label>
   </form>

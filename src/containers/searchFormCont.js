@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import {
   fetchUserData,
   fetchUserTimeline,
+  resetVisibilityFilter,
+  resetOrderFilter,
   resetUserData,
   resetUserTimeline,
   toggleForm
@@ -27,6 +29,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit (ev) {
       ev.preventDefault()
+      dispatch(resetVisibilityFilter())
+      dispatch(resetOrderFilter())
       let query = $(ev.target).serializeObject()
       dispatch(fetchUserData(query))
       dispatch(fetchUserTimeline(query))
@@ -40,6 +44,8 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     onClickReset (ev) {
+      dispatch(resetVisibilityFilter())
+      dispatch(resetOrderFilter())
       dispatch(resetUserTimeline())
       dispatch(resetUserData())
       dispatch(toggleForm())
