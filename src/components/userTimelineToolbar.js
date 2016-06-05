@@ -13,7 +13,9 @@ const UserTimelineToolbar = ({
   retweetCount,
   hasImage,
   filterOrderDir,
-  orderDir
+  filterOrderBy,
+  orderDir,
+  orderIt
 }) => (
   <form className='user-timeline-toolbar'>
     <label>
@@ -35,18 +37,22 @@ const UserTimelineToolbar = ({
         onChange={(ev) => filterWithRetweets(Number(ev.target.value))}
       />
     </label>
-    <radiogroup onChange={noop}>
+    <radiogroup onChange={(ev) => filterOrderBy(ev.target.value)}>
       <label>
         Sort by date:<input
           type='radio'
+          checked={orderIt === 'created_at_timestamp' ? 'checked' : null}
           value='created_at_timestamp'
+          onChange={noop}
           name='sort-by'
         />
       </label>
       <label>
         Sort by length:<input
           type='radio'
+          checked={orderIt === 'text_length' ? 'checked' : null}
           value='text_length'
+          onChange={noop}
           name='sort-by'
         />
       </label>

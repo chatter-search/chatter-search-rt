@@ -48,6 +48,12 @@ const mapDispatchToProps = (dispatch) => ({
       SHOW_WITH_RETWEETS: val
     }))
   },
+  filterOrderBy (val) {
+    let ORDER_BY = val
+    dispatch(setOrderFilter({
+      ORDER_BY
+    }))
+  },
   filterOrderDir (val) {
     let ORDER_DIR = val ? 'desc' : 'asc'
     dispatch(setOrderFilter({
