@@ -8,11 +8,9 @@ import UserShow from '../components/userShow'
 
 import '../plugins/serializeObject'
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.userData.data
-  }
-}
+const mapStateToProps = (state) => ({
+  userData: state.userData.data
+})
 
 const UserShowCont = connect(
   mapStateToProps

@@ -5,8 +5,8 @@
 
 import React, { PropTypes } from 'react'
 
-const UserShow = ({ data }) => {
-  let { profile_image_url_https, name, screen_name, description } = data
+const UserShow = ({ userData }) => {
+  let { profile_image_url_https, name, screen_name, description } = userData
   return screen_name ? (
     <div id='user-show'>
       <div className='profile-card'>
@@ -19,7 +19,7 @@ const UserShow = ({ data }) => {
 }
 
 UserShow.propTypes = {
-  data: PropTypes.object.isRequired
+  userData: PropTypes.object
 }
 
 export default UserShow

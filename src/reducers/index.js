@@ -33,7 +33,6 @@ import isFormExpanded from './isFormExpanded'
       data: null
     }
   }
-
 */
 
 const chatterApp = combineReducers({
