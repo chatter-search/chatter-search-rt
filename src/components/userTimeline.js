@@ -7,16 +7,17 @@ import React, { PropTypes } from 'react'
 import UserTimelineContent from './userTimelineContent'
 import UserTimelineToolbar from './userTimelineToolbar'
 
-const UserTimeline = ({data}) => {
+const UserTimeline = (props) => {
+  let {tweets} = props
   return (
-    data
+    tweets
       ? <div className='user-timeline-items'>
-        <UserTimelineToolbar />
+        <UserTimelineToolbar {...props}/>
         <div className='user-timeline-content'>
-            {data.length
-              ? data.map((item, ix) => <UserTimelineContent key={ix} {...item} />)
+            {tweets.length
+              ? tweets.map((item, ix) => <UserTimelineContent key={ix} {...item} />)
               : <section className='user-timeline-item'>
-                <div className='user-timeline-text'>This user does not have any tweets.</div>
+                <div className='user-timeline-text'>Nothing matched your criteria.</div>
                 <div className='clear'></div>
               </section>
             }
@@ -27,7 +28,7 @@ const UserTimeline = ({data}) => {
 }
 
 UserTimeline.PropTypes = {
-  data: PropTypes.object
+  tweets: PropTypes.object
 }
 
 export default UserTimeline

@@ -4,7 +4,13 @@
  */
 
 import { connect } from 'react-redux'
-import { fetchUserData, resetUserData, toggleForm } from '../actions'
+import {
+  fetchUserData,
+  fetchUserTimeline,
+  resetUserData,
+  resetUserTimeline,
+  toggleForm
+} from '../actions'
 import SearchForm from '../components/searchForm'
 
 import $ from 'jquery'
@@ -12,7 +18,7 @@ import '../plugins/serializeObject'
 
 const mapStateToProps = (state) => {
   return {
-    isFetching: state.userData.isFetching,
+    isFetching: state.userData.isFetching || state.userTimeline.isFetching,
     isFormExpanded: state.isFormExpanded
   }
 }
@@ -23,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
       ev.preventDefault()
       let query = $(ev.target).serializeObject()
       dispatch(fetchUserData(query))
+      dispatch(fetchUserTimeline(query))
     },
     onReset (ev) {
       let form = $(ev.target)
@@ -33,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     onClickReset (ev) {
+      dispatch(resetUserTimeline())
       dispatch(resetUserData())
       dispatch(toggleForm())
     }

@@ -7,31 +7,25 @@ import { combineReducers } from 'redux'
 
 import visibilityFilter from './visibilityFilter'
 import userData from './userData'
+import userTimeline from './userTimeline'
 import isFormExpanded from './isFormExpanded'
 
 /* Shape for the state data
   {
     visibilityFilter: {
-      [SHOW_WITH_IMAGES]: false,
-      [SHOW_WITH_RETWEETS]: 0
+      'SHOW_WITH_IMAGES': false,
+      'SHOW_WITH_RETWEETS': 0
     },
     isFormExpanded: false,
     userData: {
       isFetching: false,
       query: null,
-      data: {
-        ...
-      }
+      data: null
     },
-    userTweets: {
+    userTimeline: {
       isFetching: false,
       query: null,
-      data: [
-        {
-          ...
-        },
-        ...
-      ]
+      data: null
     }
   }
 
@@ -40,6 +34,7 @@ import isFormExpanded from './isFormExpanded'
 const chatterApp = combineReducers({
   visibilityFilter,
   userData,
+  userTimeline,
   isFormExpanded
 })
 
