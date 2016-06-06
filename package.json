@@ -10,7 +10,9 @@
     "compile-scripts": "webpack --config webpack-production.config.js -p",
     "watch-scripts": "webpack --watch -d",
     "copy-index": "cp ./src/index.html ./build",
-    "build": "npm run compile-scripts && npm run copy-index"
+    "build": "npm run compile-scripts & npm run compile-styles & npm run copy-index",
+    "surge": "surge ./build chatter-search-rt.surge.sh",
+    "deploy": "npm run build && npm run surge"
   },
   "author": "Dmitrii Lapshukov <lapshukov@gmail.com>",
   "license": "ISC",
@@ -36,6 +38,7 @@
     "redux": "3.5.2",
     "redux-thunk": "2.1.0",
     "stats-webpack-plugin": "0.3.1",
+    "surge": "0.18.0",
     "webpack": "1.13.1"
   }
 }
