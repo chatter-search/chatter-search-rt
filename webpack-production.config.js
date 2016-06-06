@@ -1,8 +1,9 @@
 var path = require('path')
+var webpack = require('webpack')
 var StatsPlugin = require('stats-webpack-plugin')
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-source-map',
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -19,6 +20,11 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': '\'production\''
+      }
+    }),
     new StatsPlugin('stats.json', {
       chunkModules: true,
       exclude: [/node_modules[\\\/]react/]
