@@ -5,11 +5,10 @@
 import { connect } from 'react-redux'
 import { setVisibilityFilter, setOrderFilter } from '../actions'
 import UserTimeline from '../components/userTimeline'
-import { has, orderBy } from 'lodash'
 
 const getVisibleTweets = (tweets, hasImage, retweetsThreshold) => {
   if (hasImage) {
-    tweets = tweets.filter((t) => has(t, 'photos'))
+    tweets = tweets.filter((t) => t.hasOwnProperty('photos'))
   }
   if (retweetsThreshold) {
     tweets = tweets.filter((t) => t.retweet_count >= retweetsThreshold)
@@ -17,7 +16,14 @@ const getVisibleTweets = (tweets, hasImage, retweetsThreshold) => {
   return tweets
 }
 const getOrderedTweets = (tweets, orderIt, orderDir) => {
-  return orderBy(tweets, orderIt, orderDir)
+  var comp = (a, b) => {
+    if (orderDir === 'asc') {
+      return a - b
+    } else {
+      return b - a
+    }
+  }
+  return tweets.sort((a, b) => comp(a[orderIt], b[orderIt]))
 }
 
 const mapStateToProps = (state) => {
