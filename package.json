@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"@TODO\"",
-    "compile-styles": "./tasks/compile-styles.sh",
     "clean": "rm -rf ./build/*",
+    "compile-styles": "./tasks/compile-styles.sh",
     "watch-styles": "sane 'npm run compile-styles' ./src/styles --glob='**/*.scss'",
     "compile-scripts": "webpack --config webpack-production.config.js -p",
     "watch-scripts": "webpack --watch -d",
