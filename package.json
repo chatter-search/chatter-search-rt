@@ -6,11 +6,13 @@
   "scripts": {
     "test": "echo \"@TODO\"",
     "compile-styles": "./tasks/compile-styles.sh",
+    "clean": "rm -rf ./build/*",
     "watch-styles": "sane 'npm run compile-styles' ./src/styles --glob='**/*.scss'",
     "compile-scripts": "webpack --config webpack-production.config.js -p",
     "watch-scripts": "webpack --watch -d",
     "copy-index": "cp ./src/index.html ./build",
-    "build": "npm run compile-scripts & npm run compile-styles & npm run copy-index",
+    "prebuild": "npm run clean",
+    "build": "./tasks/build.sh",
     "surge": "surge ./build chatter-search-rt.surge.sh",
     "deploy": "npm run build && npm run surge"
   },
