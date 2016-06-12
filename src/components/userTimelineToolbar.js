@@ -5,7 +5,7 @@
 
 import React, { PropTypes } from 'react'
 
-import { noop } from 'lodash'
+let noop = () => null
 
 const UserTimelineToolbar = ({
   filterWithImages,
